@@ -22,12 +22,10 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
                 <div id="topNavBgFade"></div>
 
-                <ul id="topNav">
-                    <?php
-    					$a = new Area('Header Nav');
-    					$a->display($c);
-					?>
-                </ul>
+                <?php
+                    $a = new Area('Header Nav');
+                    $a->display($c);
+                ?>
 
                 <div id="topUserNav">
                     <!-- This is why whitespaces inside block elements shouldn't be parsed -->
