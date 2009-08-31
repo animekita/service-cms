@@ -7,9 +7,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <?php Loader::element('header_required'); ?>
-        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>css/base.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>css/cms.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/base.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/cms.css" />
     </head>
     <body>
 		
@@ -18,7 +18,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
             <div id="topNavBg"></div>
 
             <div id="top">
-                <img id="topLogo" src="/graphics/toplogo.png" alt="Anime Kita logo" />
+                <img id="topLogo" src="<?php echo $staticFiles; ?>/graphics/toplogo.png" alt="Anime Kita logo" />
 
                 <div id="topNavBgFade"></div>
 
