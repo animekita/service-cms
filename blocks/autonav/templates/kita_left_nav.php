@@ -3,16 +3,44 @@
 	$aBlocks = $controller->generateNav();
 	global $c;
 	echo("<ul class=\"leftNav\">");
-
+	
 	$nh = Loader::helper('navigation');
-
-	$isFirst = true;
+	
+	//this will create an array of parent cIDs 
+	$inspectC=$c;
+	$selectedPathCIDs=array( $inspectC->getCollectionID() );
+	$parentCIDnotZero=true;	
+	while($parentCIDnotZero){
+		$cParentID=$inspectC->cParentID;
+		if(!intval($cParentID)){
+			$parentCIDnotZero=false;
+		}else{
+			$selectedPathCIDs[]=$cParentID;
+			$inspectC=Page::getById($cParentID);
+		}
+	} 	
+	
 	foreach($aBlocks as $ni) {
 		$_c = $ni->getCollectionObject();
 		if (!$_c->getCollectionAttributeValue('exclude_nav')) {
 			
-			$pageLink = false;
+			$thisLevel = $ni->getLevel();
+			if ($thisLevel > $lastLevel) {
+				echo("<ul>");
+			} else if ($thisLevel < $lastLevel) {
+				for ($j = $thisLevel; $j < $lastLevel; $j++) {
+					if ($lastLevel - $j > 1) {
+						echo("</li></ul>");
+					} else {
+						echo("</li></ul></li>");
+					}
+				}
+			} else if ($i > 0) {
+				echo("</li>");
+			}
 
+			$pageLink = false;
+			
 			if ($_c->getCollectionAttributeValue('replace_link_with_first_in_nav')) {
 				$subPage = $_c->getFirstChild();
 				if ($subPage instanceof Page) {
@@ -23,19 +51,23 @@
 			if (!$pageLink) {
 				$pageLink = $ni->getURL();
 			}
-			
-			echo '<li>';
-			
+
 			if ($c->getCollectionID() == $_c->getCollectionID()) { 
-				echo('<a class="current" href="' . $pageLink . '">' . $ni->getName() . '</a>');
+				echo('<li class="nav-selected nav-path-selected"><a class="current nav-path-selected" href="' . $pageLink . '">' . $ni->getName() . 
+'</a>');
+			} elseif ( in_array($_c->getCollectionID(),$selectedPathCIDs) ) { 
+				echo('<li class="nav-path-selected"><a class="nav-path-selected" href="' . $pageLink . '">' . $ni->getName() . '</a>');
 			} else {
-				echo('<a href="' . $pageLink . '">' . $ni->getName() . '</a>');
+				echo('<li><a href="' . $pageLink . '">' . $ni->getName() . '</a>');
 			}	
+			$lastLevel = $thisLevel;
+			$i++;
 			
-			echo('</li>');
-			$isFirst = false;			
+			
 		}
 	}
 	
-	echo('</ul>');
-?>
+	$thisLevel = 0;
+	for ($i = $thisLevel; $i <= $lastLevel; $i++) {
+		echo("</li></ul>");
+	}
