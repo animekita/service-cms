@@ -1,6 +1,6 @@
 <?php
 /** Template source: revision 392 **/
-$staticFiles = 'http://www.anime-kita.dk/static/dev';
+$staticFiles = 'http://www.anime-kita.dk/static/alt/c5';
 
 echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -27,12 +27,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                     $a->display($c);
                 ?>
 
-                <div id="topUserNav">
-                    <!-- This is why whitespaces inside block elements shouldn't be parsed -->
-                    <a class="floatLeft" href="/">Login</a
-                    ><span class="vertSeperatorTiny">|</span
-                    ><a href="/">Opret Bruger</a>
-                </div>
+                
 
             </div>
 
