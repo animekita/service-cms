@@ -1,12 +1,14 @@
 <?php
 /** Template source: revision 392 **/
-$staticFiles = 'http://www.anime-kita.dk/static/alt/c5';
+$staticFiles = 'http://alpha.kita.dk/static';
 
 echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <?php Loader::element('header_required'); ?>
+        <?php 
+        Loader::element('header_required');
+        ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/base.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $staticFiles; ?>/css/cms.css" />
@@ -26,9 +28,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                     $a = new Area('Header Nav');
                     $a->display($c);
                 ?>
-
-                
-
+				<?php Loader::element('kita_inline_edit'); ?>
             </div>
 
             <div id="mid">
@@ -63,7 +63,12 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
             ><span class="vertSeperatorMedium">|</span
             ><a href="/">Copyright</a
             ><span class="vertSeperatorMedium">|</span
-            ><a href="/">Databehandlingspolitik</a>
+            ><a href="/">Databehandlingspolitik</a
+            <?php  $dh = Loader::helper('concrete/dashboard'); if ($dh->canRead()) { ?>
+            ><span class="vertSeperatorMedium">|</span
+			><a href="<?php echo View::url('/dashboard')?>">Administrations interface</a
+			<?php  } ?>
+			>
         </div>
         
     </body>
