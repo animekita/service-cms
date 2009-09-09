@@ -28,7 +28,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
                     $a = new Area('Header Nav');
                     $a->display($c);
                 ?>
-				<?php Loader::element('kita_inline_edit'); ?>
+				
+            </div>
+            
+            <div id="pageControls">
+            <?php Loader::element('kita_inline_edit'); ?>
             </div>
 
             <div id="mid">

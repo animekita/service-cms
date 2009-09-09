@@ -72,57 +72,56 @@ if (isset($cp)) {
 	
 	}
 
-if ($cp->canWrite() || $cp->canAddSubContent() || $cp->canAdminPage()) { ?>
+$html = '';
 
-<div id="topPageNav">
-<!-- This is why whitespaces inside block elements shouldn't be parsed -->
-<?php  if ($c->isArrangeMode()) { ?>
-<a href="#" id="ccm-nav-save-arrange"><?php echo t('Save Positioning')?></a
+if ($cp->canWrite() || $cp->canAddSubContent() || $cp->canAdminPage()) {
 
-<?php  } else if ($c->isEditMode()) { ?>
-<a href="javascript:void(0)" id="ccm-nav-exit-edit"><?php echo t('Exit Edit Mode')?></a
-><span class="vertSeperatorTiny">|</span
-><a href="javascript:void(0)" id="ccm-nav-properties"><?php echo t('Properties')?></a
+$html .= '<ul>';
 
-	<?php  if ($cp->canAdminPage()) { ?>
-	><span class="vertSeperatorTiny">|</span
-	><a href="javascript:void(0)" id="ccm-nav-design"><?php echo t('Design')?></a
-	><span class="vertSeperatorTiny">|</span
-	><a href="javascript:void(0)" id="ccm-nav-permissions"><?php echo t('Permissions')?></a
-	<?php  } ?>
+if ($c->isArrangeMode()) {
 
-	<?php  if ($cp->canReadVersions()) { ?>
-	><span class="vertSeperatorTiny">|</span
-	><a href="javascript:void(0)" id="ccm-nav-versions"><?php echo t('Versions')?></a
-	<?php  } ?>
+    $html .= '<li><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
+
+} else if ($c->isEditMode()) {
+    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
+
+	if ($cp->canAdminPage()) {
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-design">' . t('Design') . '</a></li>';
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-permissions">' . t('Permissions') . '</a></li>';
+	}
+
+	if ($cp->canReadVersions()) {
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
+	}
 	
-	<?php  if ($sh->canRead() || $cp->canDeleteCollection()) { ?>
-	><span class="vertSeperatorTiny">|</span
-	><a href="javascript:void(0)" id="ccm-nav-mcd"><?php echo t('Move/Delete')?></a
-	<?php  } ?>
+	if ($sh->canRead() || $cp->canDeleteCollection()) {
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
+	}
 
-<?php  } else { ?>
+} else {
 
-	<?php  if ($cantCheckOut) { ?>
-	<span id="ccm-nav-edit"><?php echo t('Edit Page')?></span
+	if ($cantCheckOut) {
+	    $html .= '<li><span id="ccm-nav-edit">' . t('Edit Page') . '</span></li>';
 	
-	<?php  } else if ($cp->canWrite()) { ?>
-	<a href="javascript:void(0)" id="ccm-nav-edit"><?php echo t('Edit Page')?></a
+	} else if ($cp->canWrite()) {
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-edit">' . t('Edit Page') . '</a></li>';
 	
-	<?php  } ?>
+	}
 
-	<?php  if ($cp->canAddSubContent()) { ?>
-	><span class="vertSeperatorTiny">|</span
-	><a href="javascript:void(0)" id="ccm-nav-add"><?php echo t('Add Page')?></a
-	<?php  } ?>
+	if ($cp->canAddSubContent()) {
+	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-add">' . t('Add Page') . '</a></li>';
+	}
 	
-<?php  } ?>
+}
 
->
+$html .= '</ul>';
 
-</div>
+ } }
 
-<?php } } ?>
+echo $html;
+
+?>
 
 <script type="text/javascript">
 $(function() {
@@ -131,6 +130,8 @@ $(function() {
          * Fixes problems with Firefox not playing nice with
          * duplicated ID's.
          **/
+        $('#ccm-nav-edit').remove();
+        $('#ccm-nav-add').remove();
 
         $('#ccm-nav-exit-edit').remove();
         $('#ccm-nav-properties').remove();
@@ -138,6 +139,8 @@ $(function() {
         $('#ccm-nav-design').remove();
         $('#ccm-nav-versions').remove();
         $('#ccm-nav-mcd').remove();
+
+        $('#ccm-nav-save-arrange').remove();
 
 		<?php  if ($c->isArrangeMode()) { ?>
 			$(ccm_arrangeInit);	
