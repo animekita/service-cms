@@ -24,10 +24,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
                 <div id="topNavBgFade"></div>
 
-                <?php
-                    $a = new Area('Header Nav');
-                    $a->display($c);
-                ?>
+                <ul id="topNav"><li><a href="http://beta.anime-kita.dk">home</a></li><li><a href="http://www.anime-kita.dk/forum">forum</a></li><li><a href="http://galleri.anime-kita.dk">galleri</a></li><li><a href="http://intranet.anime-kita.dk">intranet</a></li></ul>
+
+                <?php Loader::element('kita_user_control'); ?>
 				
             </div>
             
