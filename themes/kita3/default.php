@@ -24,7 +24,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
                 <div id="topNavBgFade"></div>
 
-                <ul id="topNav"><li><a href="http://beta.anime-kita.dk">home</a></li><li><a href="http://www.anime-kita.dk/forum">forum</a></li><li><a href="http://galleri.anime-kita.dk">galleri</a></li><li><a href="http://intranet.anime-kita.dk">intranet</a></li></ul>
+                <ul id="topNav"><li><a href="http://beta.anime-kita.dk">home</a></li><li><a href="http://www.anime-kita.dk/forum">forum</a></li><li><a href="http://galleri.anime-kita.dk">galleri</a></li><li><a href="http://anime-kita.dk/intranet/">intranet</a></li></ul>
 
                 <?php Loader::element('kita_user_control'); ?>
 				
@@ -62,11 +62,11 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
         <div id="footer">
             <!-- This is why ... -->
-            <a href="/">Kontakt</a
+            <span>Anime Kita, 2007 - <?php echo date("Y") ?> &copy; All rights reserved</span
             ><span class="vertSeperatorMedium">|</span
-            ><a href="/">Copyright</a
+            ><a href="http://www.anime-kita.dk/kontakt.html">Kontakt</a
             ><span class="vertSeperatorMedium">|</span
-            ><a href="/">Databehandlingspolitik</a
+            ><a href="https://selvbetjening.anime-kita.dk/behandling-af-personoplysninger/">Databehandlingspolitik</a
             <?php  $dh = Loader::helper('concrete/dashboard'); if ($dh->canRead()) { ?>
             ><span class="vertSeperatorMedium">|</span
 			><a href="<?php echo View::url('/dashboard')?>">Administrations interface</a
