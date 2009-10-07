@@ -20,7 +20,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
             <div id="topNavBg"></div>
 
             <div id="top">
-                <img id="topLogo" src="<?php echo $staticFiles; ?>/graphics/toplogo.png" alt="Anime Kita logo" />
+                <a href="http://www.anime-kita.dk"><img id="topLogo" src="<?php echo $staticFiles; ?>/graphics/toplogo.png" alt="Anime Kita logo" /></a>
 
                 <div id="topNavBgFade"></div>
 
