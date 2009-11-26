@@ -5,10 +5,10 @@
 <?php $u = new User(); if ($u->isRegistered()) { ?>
 <a class="floatLeft" href="https://selvbetjening.anime-kita.dk/profil/"><?php echo $u->uName; ?></a
 ><span class="vertSeperatorTiny">|</span
-><a href="https://selvbetjening.anime-kita.dk/profil/logud/">Logud</a>
+><a href="https://selvbetjening.anime-kita.dk/profil/logud/">Log ud</a>
 <?php } else { ?>
 <a class="floatLeft" href="https://selvbetjening.anime-kita.dk/bliv-medlem/">Opret Bruger</a
 ><span class="vertSeperatorTiny">|</span
-><a href="https://selvbetjening.anime-kita.dk/profil/login/">Login</a>
+><a href="https://selvbetjening.anime-kita.dk/profil/login/?next=' . $_SERVER['REQUEST_URI']">Log ind</a>
 <?php } ?>
 </div>
