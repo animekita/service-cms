@@ -9,6 +9,6 @@
 <?php } else { ?>
 <a class="floatLeft" href="https://selvbetjening.anime-kita.dk/bliv-medlem/">Opret Bruger</a
 ><span class="vertSeperatorTiny">|</span
-><a href="https://selvbetjening.anime-kita.dk/profil/login/?next=' . $_SERVER['REQUEST_URI']">Log ind</a>
+><a href="https://selvbetjening.anime-kita.dk/profil/login/?next=<?php  echo $_SERVER['REQUEST_URI']; ?>">Log ind</a>
 <?php } ?>
 </div>
