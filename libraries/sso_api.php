@@ -1,9 +1,5 @@
 <?php
-
-
-/**
- * Imported from selvbetjening 2.1.5, rev 428
- */
+# copy of rev 447
 
 // General technical exceptions (for production, only concentrate on the first)
 class AuthenticationServerException extends Exception { }
@@ -116,7 +112,6 @@ class SelvbetjeningIntegrationSSO {
 
             $response = curl_exec($ch);
             $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
             curl_close($ch);
         } catch (Exception $e) {
             throw new ErrorContactingAuthenticationServerException();
@@ -135,11 +130,22 @@ class SelvbetjeningIntegrationSSO {
     }
 
     protected function user_xml_to_array($user_xml_part) {
+        $groups = array();
+
+        $groups_raw = $user_xml_part->groups->children();
+        if (@count($groups_raw) > 0) {
+            foreach ($groups_raw as $group) {
+                $groups[] = (string) $group;
+            }
+        }
+
+
         return array("username" => (string) $user_xml_part->username,
                      "last_name" => (string) $user_xml_part->last_name,
                      "first_name" => (string) $user_xml_part->first_name,
                      "email" => (string) $user_xml_part->email,
-                     "date_joined" => (string) $user_xml_part->date_joined);
+                     "date_joined" => (string) $user_xml_part->date_joined,
+                     "groups" => $groups);
     }
 
 }
