@@ -5,10 +5,6 @@
  * Imported from selvbetjening 2.1.5, rev 428
  */
 
-define("SELV_SERVICE_ID", "beta"); # only lowercase alphanumeric and underscore
-define("SELV_AUTH_TOKEN_KEY", "kita_auth_token");
-define("SELV_API_URL", "http://alpha.kita.dk:8001/"); # remember trailing slash
-
 // General technical exceptions (for production, only concentrate on the first)
 class AuthenticationServerException extends Exception { }
 class ErrorContactingAuthenticationServerException extends AuthenticationServerException { }
