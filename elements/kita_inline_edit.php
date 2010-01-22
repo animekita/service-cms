@@ -1,4 +1,4 @@
-<?php 
+<?php
 defined('C5_EXECUTE') or die(_("Access Denied."));
 
 /**
@@ -27,7 +27,7 @@ if (isset($cp)) {
 			$statusMessage .= t("Another user is currently editing this page.");
 		}
 	}
-	
+
 	if ($c->getCollectionPointerID() > 0) {
 		$statusMessage .= t("This page is an alias of one that actually appears elsewhere. ");
 		$statusMessage .= "<br/><a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionID() . "&ctask=approve-recent'>" . t('View/Edit Original') . "</a>";
@@ -36,7 +36,7 @@ if (isset($cp)) {
 			$statusMessage .= "<a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionPointerOriginalID() . "&ctask=remove-alias" . $token . "'>" . t('Remove Alias') . "</a>";
 		}
 	} else {
-	
+
 		if (is_object($vo)) {
 			if (!$vo->isApproved() && !$c->isEditMode()) {
 				$statusMessage .= t("This page is pending approval.");
@@ -45,7 +45,7 @@ if (isset($cp)) {
 				}
 			}
 		}
-		
+
 		$pendingAction = $c->getPendingAction();
 		if ($pendingAction == 'MOVE') {
 			$statusMessage .= $statusMessage ? "&nbsp;|&nbsp;" : "";
@@ -69,7 +69,7 @@ if (isset($cp)) {
 				$statusMessage .= " <a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionID() . "&ctask=approve_pending_action" . $token . "'>" . t('Approve Delete') . "</a> | <a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionID() . "&ctask=clear_pending_action" . $token . "'>" . t('Cancel') . "</a>";
 			}
 		}
-	
+
 	}
 
 $html = '';
@@ -94,7 +94,7 @@ if ($c->isArrangeMode()) {
 	if ($cp->canReadVersions()) {
 	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
 	}
-	
+
 	if ($sh->canRead() || $cp->canDeleteCollection()) {
 	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
 	}
@@ -103,21 +103,21 @@ if ($c->isArrangeMode()) {
 
 	if ($cantCheckOut) {
 	    $html .= '<li><span id="ccm-nav-edit">' . t('Edit Page') . '</span></li>';
-	
+
 	} else if ($cp->canWrite()) {
 	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-edit">' . t('Edit Page') . '</a></li>';
-	
+
 	}
 
 	if ($cp->canAddSubContent()) {
 	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-add">' . t('Add Page') . '</a></li>';
 	}
-	
+
 }
 
 $html .= '</ul>';
 
- } }
+}
 
 echo $html;
 
@@ -143,13 +143,14 @@ $(function() {
         $('#ccm-nav-save-arrange').remove();
 
 		<?php  if ($c->isArrangeMode()) { ?>
-			$(ccm_arrangeInit);	
+			$(ccm_arrangeInit);
 		<?php  } else if ($c->isEditMode()) { ?>
-			$(ccm_editInit);	
+			$(ccm_editInit);
 		<?php  } else { ?>
 			$(ccm_init);
 		<?php  } ?>
-		
+
 	});
 </script>
 
+<?php } ?>
