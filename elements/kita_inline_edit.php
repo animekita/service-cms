@@ -72,9 +72,9 @@ if (isset($cp)) {
 
 	}
 
-$html = '';
-
 if ($cp->canWrite() || $cp->canAddSubContent() || $cp->canAdminPage()) {
+
+$html = '';
 
 $html .= '<ul>';
 
@@ -117,8 +117,6 @@ if ($c->isArrangeMode()) {
 
 $html .= '</ul>';
 
-}
-
 echo $html;
 
 ?>
@@ -153,4 +151,4 @@ $(function() {
 	});
 </script>
 
-<?php } ?>
+<?php } } ?>
