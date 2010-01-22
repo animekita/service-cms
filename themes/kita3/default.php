@@ -64,9 +64,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
             <!-- This is why ... -->
             <span>Anime Kita, 2007 - <?php echo date("Y") ?> &copy; All rights reserved</span
             ><span class="vertSeperatorMedium">|</span
-            ><a href="http://www.anime-kita.dk/kontakt.html">Kontakt</a
+            ><a href="http://beta.anime-kita.dk/om-os/kontakt/">Kontakt</a
             ><span class="vertSeperatorMedium">|</span
-            ><a href="https://selvbetjening.anime-kita.dk/behandling-af-personoplysninger/">Databehandlingspolitik</a
+            ><a href="http://beta.anime-kita.dk/databehandlingspolitik/">Databehandlingspolitik</a
             <?php  $dh = Loader::helper('concrete/dashboard'); if ($dh->canRead()) { ?>
             ><span class="vertSeperatorMedium">|</span
 			><a href="<?php echo View::url('/dashboard')?>">Administrations interface</a
