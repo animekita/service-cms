@@ -41,32 +41,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
             </div>
 
-            <div id="pageControls">
-            <?php Loader::element('kita_inline_edit'); ?>
-            </div>
-
             <div id="mid">
-                <div id="midLeft">
-                    <?php
-    					$a = new Area('Sidebar');
-    					$a->display($c);
-					?>
-
-                    <div id="kitaKanji"></div>
-
-                </div>
-
-                <div id="midContent">
-                    <?php
-    					$a = new Area('Header');
-    					$a->display($c);
-					?>
-
-					<?php
-    					$a = new Area('Main');
-    					$a->display($c);
-					?>
-                </div>
+                <?php echo $innerContent; ?>
             </div>
             <div id="footerFix"></div>
         </div>
