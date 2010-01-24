@@ -26,16 +26,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
                 <div id="topNavBgFade"></div>
 
-				<?php
-					$uriSegments = explode('/', $_SERVER['REQUEST_URI']);
-
-					// Remove the first (empty) part
-					array_shift($uriSegments);
-
-					$currentMain = reset($uriSegments);
-				?>
-
-                <ul id="topNav"><li><a href="http://beta.anime-kita.dk" class="<?php echo ($currentMain == '')?'current':''; ?>">home</a></li><li><a href="http://www.anime-kita.dk/forum">forum</a></li><li><a href="http://galleri.anime-kita.dk">galleri</a></li><li><a href="http://anime-kita.dk/intranet/" class="<?php echo ($currentMain == 'intranet')?'current':''; ?>">intranet</a></li></ul>
+				<?php Loader::element('kita_top_navigation'); ?>
 
                 <?php Loader::element('kita_user_control'); ?>
 

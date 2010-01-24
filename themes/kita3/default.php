@@ -24,74 +24,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
 				<div id="topNavBgFade"></div>
 
-				<?php
-				$uriSegments = explode('/', $_SERVER['REQUEST_URI']);
-
-				// Remove the first (empty) part
-				array_shift($uriSegments);
-
-				// Reset the array pointer
-				$currentMain = reset($uriSegments);
-
-				$topLinks = array(
-				 'home' => array(
-					'label' => 'home',
-					'url' => '/',
-					'attrbs' => array()
-				 ),
-				 'forum' => array(
-					'label' => 'forum',
-					'url' => 'http://forum.anime-kita.dk',
-					'attrbs' => array()
-				 ),
-				 'galleri' => array(
-					'label' => 'galleri',
-					'url' => 'http://galleri.anime-kita.dk',
-					'attrbs' => array()
-				 ),
-				 'intranet' => array(
-					'label' => 'intranet',
-					'url' => '/intranet/',
-					'attrbs' => array()
-				 )
-				);
-
-				// A downright blatant assumption..
-				switch($currentMain) {
-					case 'intranet':
-						$current = 'intranet';
-						break;
-					default:
-						$current = 'home';
-						break;
-				}
-				
-				?>
-
-				<ul id="topNav">
-
-					<?php foreach($topLinks as $index => $link): ?>
-
-						<?php
-
-						if($index === $current) {
-							$link['attrbs']['class'] = 'current';
-						}
-
-						// Assign the keys in the array to variables
-						extract($link);
-
-						// Put attributes together
-						$attributes = '';
-						foreach($attrbs as $key => $value) {
-							$attributes .= $key . '="'.$value.'" ';
-						}
-
-						?>
-					<li><a href="<?php echo $url;?>" <?php echo $attributes; ?>><?php echo $label ?></a></li>
-					<?php endforeach; ?>
-
-				</ul>
+				<?php Loader::element('kita_top_navigation'); ?>
 
 				<?php Loader::element('kita_user_control'); ?>
 
