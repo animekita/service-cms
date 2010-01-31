@@ -11,12 +11,12 @@ $currentMain = reset($uriSegments);
 $topLinks = array(
  'home' => array(
 	'label' => 'home',
-	'url' => 'http://beta.anime-kita.dk',
+	'url' => 'http://www.anime-kita.dk',
 	'attrbs' => array()
  ),
  'forum' => array(
 	'label' => 'forum',
-	'url' => 'http://forum.anime-kita.dk',
+	'url' => 'http://www.anime-kita.dk/forum/',
 	'attrbs' => array()
  ),
  'galleri' => array(
