@@ -85,7 +85,7 @@ if (!$c->isAlias()) {
 	}
 
 	$showOnEdit = '';
-	if ($c->isEditMode()) {
+	if (!$c->isEditMode()) {
 		$showOnEdit = ' style="display: none"';
 	}
 
