@@ -80,8 +80,13 @@ $html .= '<ul>';
 if (!$c->isAlias()) {
 
 	$hideOnEdit = '';
-	if (!$c->isEditMode()) {
+	if ($c->isEditMode()) {
 		$hideOnEdit = ' style="display: none"';
+	}
+
+	$showOnEdit = '';
+	if ($c->isEditMode()) {
+		$showOnEdit = ' style="display: none"';
 	}
 
 	$html .= '<li' . $hideOnEdit . '>';
@@ -100,33 +105,33 @@ if (!$c->isAlias()) {
 	}
 
 
-	$html .= '<li' . $hideOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
+	$html .= '<li' . $showOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
 
-	$hideOnEditModeNew = '';
+	$showOnEditModeNew = '';
 
 	if (!$c->isEditMode() || ($vo->isNew()))  { 
-		$hideOnEditModeNew = ' style="display: none"';
+		$showOnEditModeNew = ' style="display: none"';
 	}
 
 	//$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
-	$html .= '<li' . $hideOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+	$html .= '<li' . $showOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
 
 	if ($cp->canWrite()) {
-		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
+		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
 	}
 
 	if ($cp->canAdminPage()) {
-		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-design">' . t('Design') . '</a></li>';
-		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-permissions">' . t('Permissions') . '</a></li>';
+		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-design">' . t('Design') . '</a></li>';
+		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-permissions">' . t('Permissions') . '</a></li>';
 	}
 
 	if ($cp->canReadVersions()) {
-		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
+		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
 	}
 
 	if ($sh->canRead() || $cp->canDeleteCollection()) {
-		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
+		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
 	}
 }
 
