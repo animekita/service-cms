@@ -105,8 +105,6 @@ if (!$c->isAlias()) {
 	}
 
 
-	$html .= '<li' . $showOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
-
 	$showOnEditModeNew = '';
 
 	if (!$c->isEditMode() || ($vo->isNew()))  { 
@@ -116,6 +114,8 @@ if (!$c->isAlias()) {
 	//$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
 	$html .= '<li' . $showOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+
+	$html .= '<li' . $showOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
 
 	if ($cp->canWrite()) {
 		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
