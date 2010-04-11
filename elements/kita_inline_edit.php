@@ -102,7 +102,8 @@ if (!$c->isAlias()) {
 
 	$html .= '<li' . $hideOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
 
-	$hideOnEditModeNew = ''
+	$hideOnEditModeNew = '';
+
 	if (!$c->isEditMode() || ($vo->isNew()))  { 
 		$hideOnEditModeNew = ' style="display: none"';
 	}
