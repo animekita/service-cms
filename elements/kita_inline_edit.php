@@ -77,8 +77,6 @@ $html = '';
 
 $html .= '<ul>';
 
----
-
 if (!$c->isAlias()) {
 
 	$hideOnEdit = '';
