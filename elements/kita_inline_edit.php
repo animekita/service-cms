@@ -108,7 +108,7 @@ if (!$c->isAlias()) {
 		$hideOnEditModeNew = ' style="display: none"';
 	}
 
-	$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
+	//$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
 	$html .= '<li' . $hideOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
 
