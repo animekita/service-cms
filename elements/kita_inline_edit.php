@@ -80,7 +80,7 @@ $html .= '<ul>';
 if (!$c->isAlias()) {
 
 	$hideOnEdit = '';
-	if ($c->isEditMode()) {
+	if (!$c->isEditMode()) {
 		$hideOnEdit = ' style="display: none"';
 	}
 
