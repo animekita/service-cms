@@ -12,7 +12,6 @@ global $cp;
 $valt = Loader::helper('validation/token');
 $sh = Loader::helper('concrete/dashboard/sitemap');
 $dh = Loader::helper('concrete/dashboard');
-$supportHelper=Loader::helper('concrete/support');
 
 if (isset($cp)) {
 
@@ -30,7 +29,7 @@ if (isset($cp)) {
 
 	if ($c->getCollectionPointerID() > 0) {
 		$statusMessage .= t("This page is an alias of one that actually appears elsewhere. ");
-		$statusMessage .= "<br/><a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionID() . "&ctask=approve-recent'>" . t('View/Edit Original') . "</a>";
+		$statusMessage .= "<br/><a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionID() . "'>" . t('View/Edit Original') . "</a>";
 		if ($cp->canApproveCollection()) {
 			$statusMessage .= "&nbsp;|&nbsp;";
 			$statusMessage .= "<a href='" . DIR_REL . "/" . DISPATCHER_FILENAME . "?cID=" . $c->getCollectionPointerOriginalID() . "&ctask=remove-alias" . $token . "'>" . t('Remove Alias') . "</a>";
@@ -72,47 +71,64 @@ if (isset($cp)) {
 
 	}
 
-if ($cp->canWrite() || $cp->canAddSubContent() || $cp->canAdminPage()) {
+if ($cp->canWrite() || $cp->canAddSubContent() || $cp->canAdminPage() || $cp->canApproveCollection()) {
 
 $html = '';
 
 $html .= '<ul>';
 
-if ($c->isArrangeMode()) {
+---
 
-    $html .= '<li><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
+if (!$c->isAlias()) {
 
-} else if ($c->isEditMode()) {
-    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
-    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
+	$hideOnEdit = '';
+	if ($c->isEditMode()) {
+		$hideOnEdit = ' style="display: none"';
+	}
+
+	$html .= '<li' . $hideOnEdit . '>';
+
+	if ($cantCheckOut) {
+		$html .= '<span id="ccm-nav-edit">' . t('Edit Page') . '</span>';
+	} else if ($cp->canWrite() || $cp->canApproveCollection()) {
+		$html .= '<a href="javascript:void(0)" id="ccm-nav-edit">' . t('Edit Page') . '</a>';
+	}
+
+	$html .= '</li>';
+
+
+	if ($cp->canAddSubContent()) {
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-add">' . t('Add Page') . '</a></li>';
+	}
+
+
+	$html .= '<li' . $hideOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
+
+	$hideOnEditModeNew = ''
+	if (!$c->isEditMode() || ($vo->isNew()))  { 
+		$hideOnEditModeNew = ' style="display: none"';
+	}
+
+	$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
+
+	$html .= '<li' . $hideOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+
+	if ($cp->canWrite()) {
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
+	}
 
 	if ($cp->canAdminPage()) {
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-design">' . t('Design') . '</a></li>';
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-permissions">' . t('Permissions') . '</a></li>';
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-design">' . t('Design') . '</a></li>';
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-permissions">' . t('Permissions') . '</a></li>';
 	}
 
 	if ($cp->canReadVersions()) {
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-versions">' . t('Versions') . '</a></li>';
 	}
 
 	if ($sh->canRead() || $cp->canDeleteCollection()) {
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
+		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-mcd">' . t('Move/Delete') . '</a></li>';
 	}
-
-} else {
-
-	if ($cantCheckOut) {
-	    $html .= '<li><span id="ccm-nav-edit">' . t('Edit Page') . '</span></li>';
-
-	} else if ($cp->canWrite()) {
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-edit">' . t('Edit Page') . '</a></li>';
-
-	}
-
-	if ($cp->canAddSubContent()) {
-	    $html .= '<li><a href="javascript:void(0)" id="ccm-nav-add">' . t('Add Page') . '</a></li>';
-	}
-
 }
 
 $html .= '</ul>';
