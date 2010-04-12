@@ -122,9 +122,9 @@ if (!$c->isAlias()) {
 
 	$html .= '<li' . $showOnArrange . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
 
-	$html .= '<li' . $showOnEditNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
+	$html .= '<li' . $showOnEditNotNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
-	$html .= '<li' . $showOnEditNotNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+	$html .= '<li' . $showOnEditNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
 
 	if ($cp->canWrite()) {
 		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
