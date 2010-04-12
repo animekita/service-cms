@@ -89,6 +89,21 @@ if (!$c->isAlias()) {
 		$showOnEdit = ' style="display: none"';
 	}
 
+	$showOnArrange = '';
+	if (!$c->isArrangeMode()) {
+		$showOnArrange = ' style="display: none"';
+	}
+
+	$showOnEditNew = '';
+	if (!$c->isEditMode() || ($vo->isNew()))  { 
+		$showOnEditModeNew = ' style="display: none"';
+	}
+
+	$showOnEditNotNew = '';
+	if (!$c->isEditMode() || ($vo->isNew()))  { 
+		$showOnEditModeNew = ' style="display: none"';
+	}
+
 	$html .= '<li' . $hideOnEdit . '>';
 
 	if ($cantCheckOut) {
@@ -104,18 +119,11 @@ if (!$c->isAlias()) {
 		$html .= '<li' . $hideOnEdit . '><a href="javascript:void(0)" id="ccm-nav-add">' . t('Add Page') . '</a></li>';
 	}
 
+	$html .= '<li' . $showOnArrange . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
 
-	$showOnEditModeNew = '';
+	$html .= '<li' . $showOnEditNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
-	if (!$c->isEditMode() || ($vo->isNew()))  { 
-		$showOnEditModeNew = ' style="display: none"';
-	}
-
-	//$html .= '<li' . $hideOnEditModeNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
-
-	$html .= '<li' . $showOnEditModeNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
-
-	$html .= '<li' . $showOnEdit . '><a href="#" id="ccm-nav-save-arrange">' . t('Save Positioning') . '</a></li>';
+	$html .= '<li' . $showOnEditNotNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
 
 	if ($cp->canWrite()) {
 		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
