@@ -126,10 +126,6 @@ if (!$c->isAlias()) {
 
 	$html .= '<li' . $showOnEditNotNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
 
-menuHTML += '<li class="ccm-main-nav-edit-option ccm-main-nav-exit-edit-mode-direct" <?php  if (!$c->isEditMode() || ($vo->isNew()))  { ?> style="display: none" <?php  } ?>><a href="<?php echo DIR_REL?>/<?php echo DISPATCHER_FILENAME?>?cID=<?php echo $c->getCollectionID()?>&ctask=check-in<?php echo $token?>" id="ccm-nav-exit-edit-direct"><?php echo t('Exit Edit Mode')?></a></li>';
-
-menuHTML += '<li class="ccm-main-nav-edit-option ccm-main-nav-exit-edit-mode" <?php  if (!$c->isEditMode() || (!$vo->isNew())) { ?> style="display: none" <?php  } ?>><a href="javascript:void(0)" id="ccm-nav-exit-edit"><?php echo t('Exit Edit Mode')?></a></li>';
-
 	if ($cp->canWrite()) {
 		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
 	}
