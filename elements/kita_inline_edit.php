@@ -12,6 +12,7 @@ global $cp;
 $valt = Loader::helper('validation/token');
 $sh = Loader::helper('concrete/dashboard/sitemap');
 $dh = Loader::helper('concrete/dashboard');
+$token = '&' . $valt->getParameter();
 
 if (isset($cp)) {
 
@@ -96,12 +97,12 @@ if (!$c->isAlias()) {
 
 	$showOnEditNew = '';
 	if (!$c->isEditMode() || ($vo->isNew()))  { 
-		$showOnEditModeNew = ' style="display: none"';
+		$showOnEditNew = ' style="display: none"';
 	}
 
 	$showOnEditNotNew = '';
-	if (!$c->isEditMode() || ($vo->isNew()))  { 
-		$showOnEditModeNew = ' style="display: none"';
+	if (!$c->isEditMode() || (!$vo->isNew()))  { 
+		$showOnEditNotNew = ' style="display: none"';
 	}
 
 	$html .= '<li' . $hideOnEdit . '>';
@@ -124,6 +125,10 @@ if (!$c->isAlias()) {
 	$html .= '<li' . $showOnEditNew . '><a href="' . DIR_REL . '/' . DISPATCHER_FILENAME . '?cID=' . $c->getCollectionID() . '&ctask=check-in' . $token . '" id="ccm-nav-exit-edit-direct">' . t('Exit Edit Mode') . '</a></li>';
 
 	$html .= '<li' . $showOnEditNotNew . '><a href="javascript:void(0)" id="ccm-nav-exit-edit">' . t('Exit Edit Mode') . '</a></li>';
+
+menuHTML += '<li class="ccm-main-nav-edit-option ccm-main-nav-exit-edit-mode-direct" <?php  if (!$c->isEditMode() || ($vo->isNew()))  { ?> style="display: none" <?php  } ?>><a href="<?php echo DIR_REL?>/<?php echo DISPATCHER_FILENAME?>?cID=<?php echo $c->getCollectionID()?>&ctask=check-in<?php echo $token?>" id="ccm-nav-exit-edit-direct"><?php echo t('Exit Edit Mode')?></a></li>';
+
+menuHTML += '<li class="ccm-main-nav-edit-option ccm-main-nav-exit-edit-mode" <?php  if (!$c->isEditMode() || (!$vo->isNew())) { ?> style="display: none" <?php  } ?>><a href="javascript:void(0)" id="ccm-nav-exit-edit"><?php echo t('Exit Edit Mode')?></a></li>';
 
 	if ($cp->canWrite()) {
 		$html .= '<li' . $showOnEdit . '><a href="javascript:void(0)" id="ccm-nav-properties">' . t('Properties') . '</a></li>';
