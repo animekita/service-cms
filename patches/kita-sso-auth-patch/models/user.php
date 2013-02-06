@@ -18,7 +18,7 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
  *
  */
 
-Loader::library('sso_api');
+Loader::library('sso_api.inc');
 Loader::model('userinfo');
 
 class User extends Object {
