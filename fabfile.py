@@ -6,8 +6,8 @@ CONCRETE_VERSION = '5.4.0.5'
 CONCRETE_URL = 'http://www.concrete5.org/download_file/-/view/15153/'
 CONCRETE_TMP_FILE = '/tmp/concrete-%s.zip' % CONCRETE_VERSION
 
-SSO_AUTH_LIB_VERSION = 'trunk'
-SSO_AUTH_LIB_URL = 'http://svn.teknik.anime-kita.dk/selvbetjening/%s/integration/library/php/sso_api.inc.php' % SSO_AUTH_LIB_VERSION
+SSO_AUTH_LIB_VERSION = 'master'
+SSO_AUTH_LIB_URL = 'https://github.com/animekita/selvbetjening/raw/%s/integration/library/php/includes/sso_api.inc.php' % SSO_AUTH_LIB_VERSION
 
 def _apply(item_type, item):
 	print('Applying %s' % item)
@@ -42,7 +42,7 @@ def build():
 	local('rm -rf build/concrete%s/' % CONCRETE_VERSION)
 	
 	print('Deploying sso api library %s' % SSO_AUTH_LIB_VERSION)
-	local('svn export %s build/libraries/sso_api.inc.php' % SSO_AUTH_LIB_URL)
+	local('wget --no-check-certificate %s -O build/libraries/sso_api.inc.php' % SSO_AUTH_LIB_URL, capture=False)
 	
 	_apply('addons', 'kita-theme-addon')
 	
