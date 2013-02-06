@@ -2,8 +2,8 @@ import os
 
 from fabric.api import *
 
-CONCRETE_VERSION = '5.4.0.5'
-CONCRETE_URL = 'http://www.concrete5.org/download_file/-/view/15153/'
+CONCRETE_VERSION = '5.6.0.2'
+CONCRETE_URL = 'http://www.concrete5.org/download_file/-/view/44326/8497/'
 CONCRETE_TMP_FILE = '/tmp/concrete-%s.zip' % CONCRETE_VERSION
 
 SSO_AUTH_LIB_VERSION = 'master'
