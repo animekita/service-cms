@@ -30,8 +30,10 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
 
 			</div>
 
+			<div id="topContent">
 			<div id="pageControls">
 				<?php Loader::element('kita_inline_edit'); ?>
+			</div>
 			</div>
 
 			<div id="mid">

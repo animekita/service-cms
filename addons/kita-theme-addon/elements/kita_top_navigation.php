@@ -21,7 +21,7 @@ $topLinks = array(
  ),
  'galleri' => array(
 	'label' => 'galleri',
-	'url' => 'http://galleri.anime-kita.dk',
+	'url' => 'http://www.anime-kita.dk/galleri/',
 	'attrbs' => array()
  ),
  'intranet' => array(
