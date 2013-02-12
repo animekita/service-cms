@@ -47,7 +47,7 @@ def build():
 	_apply('addons', 'kita-theme-addon')
 	
 	_apply('patches', 'kita-page-not-found-patch')
-	_apply('patches', 'kita-sso-auth-patch')
+#	_apply('patches', 'kita-sso-auth-patch')
 	_apply('patches', 'slideshow-patch')
 	
 	_apply('configs', 'config-template')
