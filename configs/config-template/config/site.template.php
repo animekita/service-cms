@@ -9,6 +9,7 @@ define('PASSWORD_SALT', '');
 define('PERMISSIONS_MODEL', 'advanced');
 define('USER_SUPER', 'admin');
 define('USER_SUPER_ID', 1);
+define('ENABLE_NEWSFLOW_OVERLAY', false);
 
 define("SELV_SERVICE_ID", "");
 define("SELV_AUTH_TOKEN_KEY", "");
